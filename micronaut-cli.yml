@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.solbeg
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [annotation-api, app-name, data, data-jpa, data-r2dbc, flyway, hibernate-jpa, http-client, java, java-application, jdbc-hikari, junit, logback, maven, mysql, netty-server, r2dbc, readme, shade, testcontainers, yaml]

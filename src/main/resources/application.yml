@@ -1,0 +1,51 @@
+micronaut:
+  application:
+    name: mysqlMicronautDemo
+
+datasources:
+  default:
+    url: jdbc:mysql://localhost:3306/micronaut
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    schema-generate: NONE
+    dialect: MYSQL
+
+r2dbc:
+  datasources:
+    default:
+      url: r2dbc:mysql://localhost:3306/micronaut
+      username: root
+      password: root
+      schema-generate: NONE
+      dialect: MYSQL
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+      clean-schema: false
+      schemas: mn
+      default-schema: mn
+
+# micronaut-data-jpa
+jpa:
+  default:
+    packages-to-scan:
+      - "com.solbeg"
+    properties:
+      hibernate:
+        show_sql: false
+
+# JSON Settings
+jackson:
+  # property-naming-strategy: SNAKE_CASE
+  serialization:
+    writeDatesAsTimestamps: false
+    writeDatesWithZoneId: true
+    writeDateTimestampsAsNanoseconds: false
+  deserialization:
+    failOnUnknownProperties: false
+  generator:
+    writeNumbersAsStrings: false
+    writeBigDecimalAsPlain: false
