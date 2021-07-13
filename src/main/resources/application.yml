@@ -35,7 +35,7 @@ jpa:
       - "com.solbeg"
     properties:
       hibernate:
-        show_sql: false
+        show_sql: true
 
 # JSON Settings
 jackson:
