@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.constraints.NotNull;
 
 @R2dbcRepository(dialect = Dialect.MYSQL)
-public interface BookRepository extends ReactorCrudRepository<Book, Long> {
+public interface BookR2dbcRepository extends ReactorCrudRepository<Book, Long> {
     @Override
     @NonNull
     @Join("author")
