@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @RequiredArgsConstructor
 @Controller("/authors")
-public class AuthorController {
+public class AuthorR2dbcController {
     private final AuthorR2dbcRepository authorR2dbcRepository;
 
     @Get(value = "/", produces = MediaType.APPLICATION_JSON_STREAM)

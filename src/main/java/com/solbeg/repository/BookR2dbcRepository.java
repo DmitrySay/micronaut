@@ -23,14 +23,4 @@ public interface BookR2dbcRepository extends ReactorCrudRepository<Book, Long> {
     @Join("author")
     Flux<Book> findAll();
 
-//    @NonNull
-//    @Override
-//    @Transactional(Transactional.TxType.MANDATORY)
-//    <S extends Book> Publisher<S> save(@NonNull @Valid @NotNull S entity);
-//
-//    @NonNull
-//    @Override
-//    @Transactional(Transactional.TxType.MANDATORY)
-//    <S extends Book> Publisher<S> saveAll(@NonNull @Valid @NotNull Iterable<S> entities);
-
 }

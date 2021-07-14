@@ -10,6 +10,7 @@ flyway:
       clean-schema: false
       schemas: mn
       default-schema: mn
+
 datasources:
   default:
     url: jdbc:mysql://localhost:3306/micronaut
@@ -26,6 +27,7 @@ jpa:
     properties:
       hibernate:
         show_sql: true
+
 r2dbc:
   datasources:
     default:

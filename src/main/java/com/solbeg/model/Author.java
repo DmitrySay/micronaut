@@ -4,10 +4,7 @@ package com.solbeg.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @NoArgsConstructor
@@ -15,9 +12,10 @@ import javax.persistence.Table;
 @Entity(name = "author")
 @Table(name = "author", schema = "mn")
 public class Author {
-    @GeneratedValue
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
 
     public Author(String name) {

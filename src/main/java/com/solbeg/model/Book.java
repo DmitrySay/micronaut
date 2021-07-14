@@ -1,6 +1,7 @@
 package com.solbeg.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,12 +11,15 @@ import javax.persistence.*;
 @Entity(name = "book")
 @Table(name = "book", schema = "mn")
 public class Book {
-    @GeneratedValue
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
+
     private int pages;
 
+    @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity = Author.class)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;

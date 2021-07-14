@@ -10,8 +10,10 @@
     <logger name="com.solbeg" level="DEBUG"/>
     <logger name="org.flywaydb.core" level="INFO"/>
     <logger name="io.micronaut.flyway" level="INFO"/>
-    <logger name="io.micronaut.data.query" level="DEBUG"/>
-    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="io.micronaut.data.query" level="trace"/>
+    <logger name="org.hibernate.SQL" level="trace"/>
+    <logger name="io.micronaut.context.env" level="trace" />
+
     <root level="info">
         <appender-ref ref="STDOUT"/>
     </root>
