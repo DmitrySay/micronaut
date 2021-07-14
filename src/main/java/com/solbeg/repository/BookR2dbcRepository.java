@@ -3,6 +3,7 @@ package com.solbeg.repository;
 import com.solbeg.model.Book;
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Join;
+import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository;
 import io.micronaut.data.r2dbc.repository.ReactorCrudRepository;
