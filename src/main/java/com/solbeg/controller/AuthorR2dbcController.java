@@ -19,7 +19,6 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.time.Duration;
 
 @RequiredArgsConstructor
 @Controller("/authors")
@@ -28,8 +27,7 @@ public class AuthorR2dbcController {
 
     @Get(produces = MediaType.APPLICATION_JSON_STREAM)
     Flux<Author> getAll() {
-        return authorService.findAll()
-                .delayElements(Duration.ofSeconds(2));
+        return authorService.findAll();
     }
 
     @Get("/{id}")
@@ -39,7 +37,6 @@ public class AuthorR2dbcController {
                 .defaultIfEmpty(HttpResponse.notFound())
                 .onErrorReturn(HttpClientResponseException.class, HttpResponse.notFound());
     }
-
 
     @Post
     Mono<Author> create(@Body @Valid Author author) {

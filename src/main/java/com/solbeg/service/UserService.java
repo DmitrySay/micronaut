@@ -1,16 +1,14 @@
 package com.solbeg.service;
 
 import com.solbeg.dto.UserDTO;
-import com.solbeg.exception.UserNotFoundException;
-import com.solbeg.model.User;
 import com.solbeg.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Singleton
 @Slf4j
@@ -19,20 +17,14 @@ public class UserService {
     public static final String USER_NOT_FOUND_MSG = "User with id=[%s] not found";
     private final UserRepository userRepository;
 
-    @Transactional
-    public List<UserDTO> getUsers() {
+    public Flux<UserDTO> getUsers() {
         return userRepository.findAll()
-                .stream()
-                .map(user -> new UserDTO(user.getId(), user.getEmail()))
-                .collect(Collectors.toList());
-
+                .map(user -> new UserDTO(user.getId(), user.getEmail()));
     }
 
     @Transactional
-    public UserDTO get(Long id) {
-        User user = userRepository
-                .findById(id)
-                .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND_MSG, id)));
-        return new UserDTO(user.getId(), user.getEmail());
+    public Mono<UserDTO> get(Long id) {
+        return userRepository.findById(id)
+                .map(user -> new UserDTO(user.getId(), user.getEmail()));
     }
 }

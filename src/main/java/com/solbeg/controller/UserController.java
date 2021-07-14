@@ -6,8 +6,8 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Controller("/users")
@@ -15,12 +15,12 @@ public class UserController {
     private final UserService userService;
 
     @Get
-    public List<UserDTO> getAll() {
+    public Flux<UserDTO> getAll() {
         return userService.getUsers();
     }
 
     @Get("/{id}")
-    public UserDTO get(@PathVariable Long id) {
+    public Mono<UserDTO> get(@PathVariable Long id) {
         return userService.get(id);
     }
 

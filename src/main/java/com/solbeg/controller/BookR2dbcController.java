@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 public class BookR2dbcController {
     private final BookR2dbcRepository bookR2dbcRepository;
 
-    @Get(value = "/", produces = MediaType.APPLICATION_JSON_STREAM)
+    @Get(produces = MediaType.APPLICATION_JSON_STREAM)
     Flux<Book> getAll() {
         return bookR2dbcRepository.findAll();
     }
@@ -32,7 +32,7 @@ public class BookR2dbcController {
         return bookR2dbcRepository.findById(id);
     }
 
-    @Post("/")
+    @Post
     Mono<HttpResponse<Book>> create(@Body @Valid Book book) {
         return bookR2dbcRepository.save(book)
                 .thenReturn(HttpResponse.created(book));
