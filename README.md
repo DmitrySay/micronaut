@@ -34,9 +34,5 @@
 
 - [https://flywaydb.org/](https://flywaydb.org/)
 
-## Feature data-r2dbc documentation
 
-- [Micronaut Data R2DBC documentation](https://micronaut-projects.github.io/micronaut-r2dbc/latest/guide/)
-
-- [https://r2dbc.io](https://r2dbc.io)
 

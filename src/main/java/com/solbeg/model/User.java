@@ -1,5 +1,9 @@
 package com.solbeg.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-import lombok.Data;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity(name = "user")
 @Table(name = "users", schema = "mn")
