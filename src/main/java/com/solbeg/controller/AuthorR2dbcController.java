@@ -12,6 +12,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,7 +26,7 @@ import java.time.Duration;
 public class AuthorR2dbcController {
     private final AuthorService authorService;
 
-    @Get(value = "/", produces = MediaType.APPLICATION_JSON_STREAM)
+    @Get(produces = MediaType.APPLICATION_JSON_STREAM)
     Flux<Author> getAll() {
         return authorService.findAll()
                 .delayElements(Duration.ofSeconds(2));
@@ -35,11 +36,12 @@ public class AuthorR2dbcController {
     Mono<MutableHttpResponse<Author>> get(@PathVariable @NotNull Long id) {
         return authorService.findById(id)
                 .map(HttpResponse::ok)
-                .defaultIfEmpty(HttpResponse.notFound());
+                .defaultIfEmpty(HttpResponse.notFound())
+                .onErrorReturn(HttpClientResponseException.class, HttpResponse.notFound());
     }
 
 
-    @Post("/")
+    @Post
     Mono<Author> create(@Body @Valid Author author) {
         return authorService.save(author)
                 .thenReturn(author);
