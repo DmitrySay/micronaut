@@ -8,6 +8,9 @@ flyway:
   datasources:
     default:
       enabled: true
+      url: jdbc:mysql://localhost:3306/micronaut
+      username: root
+      password: root
       clean-schema: false
       schemas: mn
       default-schema: mn
