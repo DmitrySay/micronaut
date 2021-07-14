@@ -6,8 +6,6 @@ import com.solbeg.repository.AuthorR2dbcRepository;
 import com.solbeg.repository.BookR2dbcRepository;
 import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.data.r2dbc.operations.R2dbcOperations;
-import io.micronaut.http.MediaType;
-import io.micronaut.http.annotation.Get;
 import io.micronaut.http.client.RxHttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -15,7 +13,6 @@ import io.micronaut.test.support.TestPropertyProvider;
 import io.reactivex.Flowable;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -31,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.micronaut.http.HttpRequest.GET;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @MicronautTest
@@ -38,9 +36,6 @@ import static io.micronaut.http.HttpRequest.GET;
 public class BookControllerTest implements TestPropertyProvider {
 
     static MySQLContainer<?> container;
-
-//    @Inject
-//    BookClient bookClient;
 
     @Inject
     R2dbcOperations operations;
@@ -104,7 +99,7 @@ public class BookControllerTest implements TestPropertyProvider {
     @Override
     public Map<String, String> getProperties() {
         container = new MySQLContainer<>(DockerImageName.parse("mysql").withTag("5"));
-        container.withDatabaseName("mn").start();
+        container.start();
         return CollectionUtils.mapOf(
                 "datasources.default.url", container.getJdbcUrl(),
                 "datasources.default.username", container.getUsername(),
@@ -119,26 +114,4 @@ public class BookControllerTest implements TestPropertyProvider {
                 "r2dbc.datasources.default.database", container.getDatabaseName()
         );
     }
-
-//    @Client("/books")
-//    interface BookClient {
-//        @Get(value = "/", consumes = MediaType.APPLICATION_JSON_STREAM)
-//        List<Book> list();
-//    }
-
-    //    @Test
-//    void testListBooks() {
-//        List<Book> list = bookClient.list();
-//        Assertions.assertEquals(5, list.size()
-//        );
-//    }
-//
-//    @Test
-//    void testListBooksMicronautData() {
-//        List<Book> list = bookClient.list();
-//        Assertions.assertEquals(
-//                5,
-//                list.size()
-//        );
-//    }
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Data
 @Entity(name = "author")
-@Table(name = "author", schema = "mn")
+@Table(name = "author")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

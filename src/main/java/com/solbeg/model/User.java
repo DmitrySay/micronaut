@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @Data
 @Entity(name = "user")
-@Table(name = "users", schema = "mn")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

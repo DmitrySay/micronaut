@@ -3,18 +3,13 @@ micronaut:
     name: mysqlMicronautDemo
   server:
     port: 8080
-
 flyway:
   datasources:
     default:
       enabled: true
-      url: jdbc:mysql://localhost:3306/micronaut
+      url: jdbc:mysql://localhost:3306/micronaut?createDatabaseIfNotExist=true
       username: root
       password: root
-      clean-schema: false
-      schemas: mn
-      default-schema: mn
-
 jpa:
   default:
     packages-to-scan:
@@ -22,7 +17,6 @@ jpa:
     properties:
       hibernate:
         show_sql: true
-
 r2dbc:
   datasources:
     default:
@@ -31,7 +25,6 @@ r2dbc:
       password: root
       schema-generate: NONE
       dialect: MYSQL
-# JSON Global Settings
 jackson:
   # property-naming-strategy: SNAKE_CASE
   serialization:
