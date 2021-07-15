@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,9 @@ public class Book {
     private int pages;
 
     @EqualsAndHashCode.Exclude
-    @ManyToOne(targetEntity = Author.class)
+    @ManyToOne(targetEntity = Author.class,
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
