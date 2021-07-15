@@ -1,7 +1,8 @@
 package com.solbeg.service;
 
 import com.solbeg.dto.UserDTO;
-import com.solbeg.repository.UserRepository;
+import com.solbeg.mapper.UserMapper;
+import com.solbeg.repository.UserR2dbcRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
@@ -14,17 +15,18 @@ import javax.transaction.Transactional;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
-    public static final String USER_NOT_FOUND_MSG = "User with id=[%s] not found";
-    private final UserRepository userRepository;
+    private final UserR2dbcRepository userR2dbcRepository;
+    private final UserMapper userMapper;
+
 
     public Flux<UserDTO> getUsers() {
-        return userRepository.findAll()
-                .map(user -> new UserDTO(user.getId(), user.getEmail()));
+        return userR2dbcRepository.findAll()
+                .map(userMapper::toDTO);
     }
 
     @Transactional
     public Mono<UserDTO> get(Long id) {
-        return userRepository.findById(id)
-                .map(user -> new UserDTO(user.getId(), user.getEmail()));
+        return userR2dbcRepository.findById(id)
+                .map(userMapper::toDTO);
     }
 }

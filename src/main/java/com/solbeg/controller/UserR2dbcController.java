@@ -1,6 +1,7 @@
 package com.solbeg.controller;
 
 import com.solbeg.dto.UserDTO;
+import com.solbeg.mapper.UserMapper;
 import com.solbeg.service.UserService;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -11,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Controller("/users")
-public class UserController {
+public class UserR2dbcController {
     private final UserService userService;
 
     @Get
