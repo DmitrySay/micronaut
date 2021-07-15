@@ -9,5 +9,6 @@ import io.micronaut.data.r2dbc.repository.ReactorCrudRepository;
 import java.util.Optional;
 
 @R2dbcRepository(dialect = Dialect.MYSQL)
-public interface UserR2dbcRepository extends ReactorCrudRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
 }
