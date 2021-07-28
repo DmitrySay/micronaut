@@ -125,6 +125,11 @@
             <artifactId>modelmapper</artifactId>
             <version>2.4.4</version>
         </dependency>
+        <!--Security-->
+        <dependency>
+            <groupId>io.micronaut.security</groupId>
+            <artifactId>micronaut-security-jwt</artifactId>
+        </dependency>
         <!--TEST-->
         <dependency>
             <groupId>io.micronaut.test</groupId>
@@ -178,7 +183,6 @@
             <version>3.4.8</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -193,7 +197,6 @@
                 <configuration>
                     <!-- Uncomment to enable incremental compilation -->
                     <useIncrementalCompilation>false</useIncrementalCompilation>
-
                     <annotationProcessorPaths combine.children="override">
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -220,6 +223,11 @@
                             <artifactId>micronaut-openapi</artifactId>
                             <version>${micronaut.openapi.version}</version>
                         </path>
+                        <path>
+                            <groupId>io.micronaut.security</groupId>
+                            <artifactId>micronaut-security-annotations</artifactId>
+                            <version>${micronaut.security.version}</version>
+                        </path>
                     </annotationProcessorPaths>
 
                     <compilerArgs>
@@ -228,20 +236,20 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-engine</artifactId>
-                    </dependency>
-                </dependencies>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.junit.platform</groupId>-->
+<!--                        <artifactId>junit-platform-surefire-provider</artifactId>-->
+<!--                    </dependency>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.junit.jupiter</groupId>-->
+<!--                        <artifactId>junit-jupiter-engine</artifactId>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

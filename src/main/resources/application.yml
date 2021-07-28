@@ -3,6 +3,16 @@ micronaut:
     name: mysqlMicronautDemo
   server:
     port: 8080
+
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+
 flyway:
   datasources:
     default:
@@ -38,3 +48,4 @@ jackson:
   generator:
     writeNumbersAsStrings: false
     writeBigDecimalAsPlain: false
+

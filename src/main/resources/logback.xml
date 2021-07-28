@@ -11,8 +11,9 @@
     <logger name="org.flywaydb.core" level="DEBUG"/>
     <logger name="io.micronaut.flyway" level="DEBUG"/>
     <logger name="io.micronaut.data.query" level="trace"/>
+    <logger name="io.micronaut.security" level="trace"/>
     <logger name="org.hibernate.SQL" level="trace"/>
-    <logger name="io.micronaut.context.env" level="DEBUG" />
+<!--    <logger name="io.micronaut.context.env" level="DEBUG" />-->
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
