@@ -38,6 +38,7 @@
 - [Configuration to integrate Micronaut and OpenAPI/Swagger](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
 - http://localhost:8080/swagger-ui
 - http://localhost:8080/rapidoc
+- http://localhost:8080/redoc
 
 
 

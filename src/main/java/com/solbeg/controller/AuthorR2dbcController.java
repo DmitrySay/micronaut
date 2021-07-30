@@ -15,6 +15,7 @@ import io.micronaut.http.annotation.Put;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,6 +26,7 @@ import javax.validation.constraints.NotNull;
 @Secured(SecurityRule.IS_AUTHENTICATED)
 @RequiredArgsConstructor
 @Controller("/authors")
+@Tag(name = "authors")
 public class AuthorR2dbcController {
     private final AuthorService authorService;
 
