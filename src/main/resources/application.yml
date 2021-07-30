@@ -3,7 +3,22 @@ micronaut:
     name: mysqlMicronautDemo
   server:
     port: 8080
-
+    cors:
+      enabled: true
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      redoc:
+        paths: classpath:META-INF/swagger/views/redoc
+        mapping: /redoc/**
+      rapidoc:
+        paths: classpath:META-INF/swagger/views/rapidoc
+        mapping: /rapidoc/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
   security:
     authentication: bearer
     token:
@@ -12,6 +27,23 @@ micronaut:
           secret:
             generator:
               secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+    intercept-url-map:
+      - pattern: /swagger-ui/**
+        httpMethod: GET
+        access:
+          - isAnonymous()
+      - pattern: /swagger/**
+        httpMethod: GET
+        access:
+          - isAnonymous()
+      - pattern: /redoc/**
+        httpMethod: GET
+        access:
+          - isAnonymous()
+      - pattern: /rapidoc/**
+        httpMethod: GET
+        access:
+          - isAnonymous()
 
 flyway:
   datasources:
@@ -20,6 +52,7 @@ flyway:
       url: jdbc:mysql://localhost:3306/micronaut?createDatabaseIfNotExist=true
       username: root
       password: root
+
 jpa:
   default:
     packages-to-scan:
@@ -29,6 +62,7 @@ jpa:
         hbm2ddl:
           auto: none
         show_sql: true
+
 r2dbc:
   datasources:
     default:
@@ -37,6 +71,7 @@ r2dbc:
       password: root
       schema-generate: NONE
       dialect: MYSQL
+
 jackson:
   # property-naming-strategy: SNAKE_CASE
   serialization:
@@ -48,4 +83,3 @@ jackson:
   generator:
     writeNumbersAsStrings: false
     writeBigDecimalAsPlain: false
-
